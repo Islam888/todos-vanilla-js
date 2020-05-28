@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Todos</title>
+  </head>
+  <body>
+    <header class="bg-info pl-2 pb-2">
+      <h1 class="text-white h1 m-0">Todos</h1>
+      <!-- <div id="filter-section" class="col-12 d-md-none bg-info border-top border-light">
+        <h3 class="h5">Filters</h3>
+        <button id="btn-urg&imp" class="btn btn-sm btn-danger  mt-2">Urg & Imp</button>
+        <button id="btn-imp" class="btn btn-sm btn-success mt-2">Important</button>
+        <button id="btn-urg" class="btn btn-sm btn-warning mt-2">Urgent</button>
+        <button id="btn-done" class="btn btn-sm btn-secondary mt-2">Done</button>
+        <button id="btn-reset" class="btn btn-sm btn-link mt-2">reset</button>
+    </div> -->
+    </header>
+    <div class="pl-2">
+      <div class="row no-gutters d-flex justify-content-between">
+        
+        <div class="col-11 col-md-8">
+          <div class="input-group mt-5">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="todo"
+              aria-label="write todo"
+              aria-describedby="todo text"
+              id="todo-input-text"
+            />
+            <div class="input-group-append">
+              <button id="add-btn" class="btn btn-outline-primary" type="button">
+                Add
+              </button>
+            </div>
+          </div>
+          <div>
+            <div>
+              <input type="checkbox" aria-label="checkbox for important" id="imp-checkbox" />
+              <span>important</span>
+            </div>
+            <div>
+              <input type="checkbox" aria-label="checkbox for urgent todos" id="urg-checkbox" />
+              <span>urgent</span>
+            </div>
+          </div>
+          <div class="mt-5 mb-5" id="todos-container">
+                  
+          </div>
+        </div>
+        <div id="filter-section" class="d-none d-md-block col-md-3 bg-light p-3">
+            <h3 class="h5 mt-5">Filters</h3>
+            <button id="btn-urg&imp" class="btn btn-danger btn-block mt-2">Urg & Imp</button>
+            <button id="btn-imp" class="btn btn-success btn-block mt-2">Important</button>
+            <button id="btn-urg" class="btn btn-warning btn-block mt-2">Urgent</button>
+            <button id="btn-done" class="btn btn-secondary btn-block mt-2">Done</button>
+            <button id="btn-reset" class="btn btn-link mt-2">reset</button>
+        </div>
+        <div id="filter-section" class="d-md-none col-11 col-md-3 border-top border-dark">
+            <h3 class="h5 mt-1">Filters</h3>
+            <button id="btn-urg&imp" class="btn btn-danger btn-sm mt-2">Urg & Imp</button>
+            <button id="btn-imp" class="btn btn-success btn-sm mt-2">Important</button>
+            <button id="btn-urg" class="btn btn-warning btn-sm mt-2">Urgent</button>
+            <button id="btn-done" class="btn btn-secondary btn-sm mt-2">Done</button>
+            <button id="btn-reset" class="btn btn-link mt-2">reset</button>
+        </div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

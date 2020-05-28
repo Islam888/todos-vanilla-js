@@ -1,0 +1,15 @@
+.todo-card {
+    transition: all 0.3s ease-in;
+}
+.todo-card:hover {
+    box-shadow: 3px 3px  13px #7c7e7e;
+}
+.btn-remove {
+    float: right;
+    color: #eee;
+    
+}
+.btn-remove:hover {
+    color: #eee;       
+    text-decoration: underline;                                 
+}
