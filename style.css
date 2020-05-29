@@ -13,3 +13,7 @@
     color: #eee;       
     text-decoration: underline;                                 
 }
+.todos-count {
+    color: #414141;
+    font-weight: 700;
+}
