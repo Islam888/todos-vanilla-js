@@ -1,14 +1,30 @@
 window.onload = (function () {
+  //variables
   let todosState = [];
   const todosContainer = document.getElementById("todos-container");
+  const addBtn = document.getElementById("add-btn");
+  const filterSection = document.getElementById('filter-section')
+  /////////////////////
+
+  //Events
+  addBtn.addEventListener("click", addTodo);
+  todosContainer.addEventListener("change", toggleDone);
+  todosContainer.addEventListener("click", deleteTodo);
+  filterSection.addEventListener('click', handleFilterClick)
+  ///////////////////
+
+  //Functions declarations
+  //1.
   function init() {
     const localStorageTodos = window.localStorage.getItem("localStorageTodos");
     if (localStorageTodos) {
       todosState = JSON.parse(localStorageTodos);
     }
+    showTodos(todosState);
   }
-  init();
-  ////////////////////////////////////////////
+  ///
+
+  //2.
   function showTodos(todosState) {
     todosContainer.innerHTML = "";
     if (todosState.length) {
@@ -44,8 +60,9 @@ window.onload = (function () {
       });
     }
   }
-  showTodos(todosState);
-  /////////////////////////////////////
+  ///
+
+  //3.
   function checkImpAndUrgAndDone(imp, urg, done) {
     if (done) {
       return "bg-secondary";
@@ -59,9 +76,9 @@ window.onload = (function () {
       return "bg-info";
     }
   }
-  /////////////////////////////////////
-  const addBtn = document.getElementById("add-btn");
-  addBtn.addEventListener("click", addTodo);
+  ///
+
+  //4.
   function addTodo() {
     const todoInputText = document.getElementById("todo-input-text");
     const impCheckbox = document.getElementById("imp-checkbox");
@@ -76,15 +93,18 @@ window.onload = (function () {
     showTodos(todosState);
     updateLocalStorage(todosState);
   }
-  ///////////////////////////
+  ///
+
+  //5.
   function updateLocalStorage(todosState) {
     window.localStorage.setItem(
       "localStorageTodos",
       JSON.stringify(todosState)
     );
   }
-  ////////////////////
-  todosContainer.addEventListener("change", toggleDone);
+  ///
+
+  //6.
   function toggleDone(e) {
     const doneCheckboxKey = Number(
       e.target.parentElement.parentElement.getAttribute("key")
@@ -97,8 +117,9 @@ window.onload = (function () {
     showTodos(todosState);
     updateLocalStorage(todosState);
   }
-  ////
-  todosContainer.addEventListener("click", deleteTodo);
+  ///
+
+  //7.
   function deleteTodo(e) {
     if (e.target.classList.contains("btn-remove")) {
       const deleteBtnKey = Number(
@@ -111,8 +132,9 @@ window.onload = (function () {
       updateLocalStorage(todosState);
     }
   }
-  const filterSection = document.getElementById('filter-section')
-  filterSection.addEventListener('click', handleFilterClick)
+  ///
+
+  //8.
   function handleFilterClick(e) {
     switch(e.target.id) {
       case "btn-done":
@@ -136,4 +158,7 @@ window.onload = (function () {
         break;
     }
   }
+  //////////////////////////////////
+  
+  init();
 })();
