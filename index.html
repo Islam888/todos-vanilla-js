@@ -16,10 +16,10 @@
     <header class="bg-info pl-3 pb-2">
       <h1 class="text-white h1 m-0">Todos</h1>
     </header>
-    <div class="pl-3">
+    <div class="">
       <div class="row no-gutters d-flex justify-content-between">
         
-        <div class="col-11 col-md-8">
+        <div class="col-11 col-md-8 pl-3">
           <div class="input-group mt-5">
             <input
               type="text"
@@ -45,13 +45,21 @@
               <span>urgent</span>
             </div>
           </div>
-          <div class="mt-5 mb-5" id="todos-container">
+          <div class="mt-4 row no-gutters d-flex justify-content-between">
+            <div>
+              <p>You have <span class="todos-count">..</span> undone todos.</p>
+            </div>
+            <div>
+              <button id="btn-sort" class="btn btn-outline-success btn-sm">Sort</button>
+            </div>
+          </div>
+          <div class="mt-4 mb-5" id="todos-container">
                   
           </div>
         </div>
-        <div id="filter-section" class=" col-11 col-md-3 bg-light p-3">
+        <div id="filter-section" class=" col-12 col-md-3 bg-light p-3">
           <div id="filter-section-wide" class="d-none d-md-block">
-              <h3 class="h5 mt-5">Filters</h3>
+              <h3 class="h6 mt-5">Filters</h3>
               <button id="btn-urg&imp" class="btn btn-danger btn-block mt-2">Urg & Imp</button>
               <button id="btn-imp" class="btn btn-success btn-block mt-2">Important</button>
               <button id="btn-urg" class="btn btn-warning btn-block mt-2">Urgent</button>
