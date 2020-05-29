@@ -90,6 +90,7 @@ window.onload = (function () {
       done: false,
       id: Date.now(),
     });
+    resetValues(todoInputText, impCheckbox, urgCheckbox)
     showTodos(todosState);
     updateLocalStorage(todosState);
   }
@@ -158,7 +159,15 @@ window.onload = (function () {
         break;
     }
   }
+  ///
+
+  //9.
+  function resetValues(todoInputText, impCheckbox, urgCheckbox) {
+    todoInputText.value = ""
+    impCheckbox.checked = false
+    urgCheckbox.checked = false
+  }
   //////////////////////////////////
-  
+
   init();
 })();
