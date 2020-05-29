@@ -3,14 +3,16 @@ window.onload = (function () {
   let todosState = [];
   const todosContainer = document.getElementById("todos-container");
   const addBtn = document.getElementById("add-btn");
-  const filterSection = document.getElementById('filter-section')
+  const filterSection = document.getElementById("filter-section");
+  const sortBtn = document.getElementById("btn-sort");
   /////////////////////
 
   //Events
   addBtn.addEventListener("click", addTodo);
   todosContainer.addEventListener("change", toggleDone);
   todosContainer.addEventListener("click", deleteTodo);
-  filterSection.addEventListener('click', handleFilterClick)
+  filterSection.addEventListener("click", handleFilterClick);
+  sortBtn.addEventListener("click", sortTodos);
   ///////////////////
 
   //Functions declarations
@@ -59,6 +61,7 @@ window.onload = (function () {
         todosContainer.insertAdjacentHTML("beforeend", todoCard);
       });
     }
+    countUndoneTodos();
   }
   ///
 
@@ -90,7 +93,7 @@ window.onload = (function () {
       done: false,
       id: Date.now(),
     });
-    resetValues(todoInputText, impCheckbox, urgCheckbox)
+    resetValues(todoInputText, impCheckbox, urgCheckbox);
     showTodos(todosState);
     updateLocalStorage(todosState);
   }
@@ -137,25 +140,31 @@ window.onload = (function () {
 
   //8.
   function handleFilterClick(e) {
-    switch(e.target.id) {
+    switch (e.target.id) {
       case "btn-done":
-        filteredTodos = todosState.filter(todoItem => todoItem.done)
-        showTodos(filteredTodos)
+        filteredTodos = todosState.filter((todoItem) => todoItem.done);
+        showTodos(filteredTodos);
         break;
       case "btn-urg&imp":
-        filteredTodos = todosState.filter(todoItem => todoItem.urgent && todoItem.important)
-        showTodos(filteredTodos)
+        filteredTodos = todosState.filter(
+          (todoItem) => todoItem.urgent && todoItem.important
+        );
+        showTodos(filteredTodos);
         break;
       case "btn-imp":
-        filteredTodos = todosState.filter(todoItem => todoItem.important && !todoItem.urgent)
-        showTodos(filteredTodos)
+        filteredTodos = todosState.filter(
+          (todoItem) => todoItem.important && !todoItem.urgent
+        );
+        showTodos(filteredTodos);
         break;
       case "btn-urg":
-        filteredTodos = todosState.filter(todoItem => todoItem.urgent && !todoItem.important)
-        showTodos(filteredTodos)
+        filteredTodos = todosState.filter(
+          (todoItem) => todoItem.urgent && !todoItem.important
+        );
+        showTodos(filteredTodos);
         break;
       case "btn-reset":
-        showTodos(todosState)
+        showTodos(todosState);
         break;
     }
   }
@@ -163,10 +172,37 @@ window.onload = (function () {
 
   //9.
   function resetValues(todoInputText, impCheckbox, urgCheckbox) {
-    todoInputText.value = ""
-    impCheckbox.checked = false
-    urgCheckbox.checked = false
+    todoInputText.value = "";
+    impCheckbox.checked = false;
+    urgCheckbox.checked = false;
   }
+  ///
+
+  //10.
+  function countUndoneTodos() {
+    const todosCount = document.querySelector(".todos-count");
+    const undoneTodos = todosState.filter((todoItem) => !todoItem.done);
+    todosCount.textContent = undoneTodos.length;
+  }
+  ///
+
+  //11.
+  function sortTodos() {
+    filteredTodos = todosState.filter((todoItem) => !todoItem.done);
+    const sortedTodos = filteredTodos.sort((a, b) => {
+      if (a.important + a.urgent > b.important + b.urgent) {
+        return -1;
+      } else if (a.important + a.urgent < b.important + b.urgent) {
+        return 1;
+      } else {
+        if (a.urgent) {
+          return -1;
+        }
+      }
+    });
+    showTodos(sortedTodos);
+  }
+
   //////////////////////////////////
 
   init();
